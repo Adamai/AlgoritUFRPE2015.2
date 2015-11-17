@@ -16,12 +16,12 @@ uma árvore vermelho-preto todos os títulos válidos, chamada árvore de livros
 composto de duas partes: Cadastramento de livros e usuários. 
 
 2.1. O cadastramento de livros e usuários possuem as seguintes opções:
-• Cadastrar livro ; 
-  A árvore deve conter um título por nodo. 
-• Descadastrar título ; 
-• Cadastrar usuário; 
-  A árvore deve conter um usuário por nodo. 
-• Descadastrar usuário; 
+  • Cadastrar livro ; 
+      A árvore deve conter um título por nodo. 
+  • Descadastrar título ; 
+  • Cadastrar usuário; 
+      A árvore deve conter um usuário por nodo. 
+  • Descadastrar usuário; 
 
 2.2. O sistema possui as seguintes opções:
 • O usuário pode realizar uma busca por livros; 
