@@ -7,15 +7,25 @@ public class NodoLivro {
 	private String titulo;
 	private NodoLivro esq;
 	private NodoLivro dir;
+	private NodoLivro pai;
 	private char cor;
 	
 	
-	public NodoLivro(String titulo, char cor, boolean emprestado, NodoLivro esq, NodoLivro dir) {
+	public NodoLivro(String titulo, char cor, boolean emprestado, NodoLivro esq, NodoLivro dir, NodoLivro pai) {
 		this.cor = cor;
 		this.emprestado = false;
 		this.titulo = titulo;
 		this.esq = esq;
 		this.dir = dir;
+		this.pai = pai;
+	}
+	
+	public NodoLivro getPai() {
+		return pai;
+	}
+
+	public void setPai(NodoLivro pai) {
+		this.pai = pai;
 	}
 	
 	public String getTitulo(){
