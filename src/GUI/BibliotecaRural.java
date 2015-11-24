@@ -8,6 +8,8 @@ import Usuarios.*;
 
 public class BibliotecaRural {
 	
+	
+	
 	public static void main(String[] args){
 		
 		ArvoreRB bib = new ArvoreRB();
@@ -36,46 +38,56 @@ public class BibliotecaRural {
 			if(escolha == 1){
 				Scanner scan5 = new Scanner(System.in);
 				String nome;
-				ArrayList<NodoLivro> emprestados;
+				ArrayList<ArvoreUsers> emprestados;
 				boolean debito;
-				System.out.println("Digite seu CPF: "); // ADD INPUT EXCEPTION SÓ LETRAS
+				System.out.println("Digite sua matrícula: "); // colocar senha?
 				nome = scan5.nextLine();
 				//buscar no repo se o CPF ja foi cadastrado, se sim, (pedir senha?) e logar como tal(transforma u)
-				u = new User(nome, null, false); //adicionar coisas de arvore (cor, pai, filhos)
+				u = new User(nome, false); //adicionar coisas de arvore
 				cadastro.cadastrar(u);
-				System.out.println("Usuário cadastrado e logado como: " +nome);
+				System.out.println("Usuário cadastrado, você pode reservar até 3 livros\nLogado como: " +nome);
 			}
 			
 			if(escolha == 2){
 				Scanner scan5 = new Scanner(System.in);
 				String titulo;
-				System.out.println("Digite o título do livro: "); // ADD INPUT EXCEPTION SÓ LETRAS
+				System.out.println("Digite o título do livro: "); 
 				titulo = scan5.nextLine();
 				
-				NodoLivro livro = new NodoLivro(titulo, 'r', false, null, null, null);
+				NodoLivro livro = new NodoLivro(titulo, 'r', false);
 				bib.adicionar(livro);
 				System.out.println("Livro adicionado ao acervo: " +titulo);
 			}
 			
-			if(escolha == 3){
+			if(escolha == 3){ //busca e empresta
 				Scanner scan2 = new Scanner(System.in);
 				String titulo;
 				System.out.println("Digite o titulo do livro que está procurando");
-				titulo = scan2.next();
-					ArrayList<NodoLivro>livros = bib.busca(titulo); 
-					int aux = bib.busca(titulo).size();
-					for(int i=0;i<aux;i++){
-						System.out.println(livros.get(i));
-						//adicionar if para não encontrado
+				titulo = scan2.nextLine();
+				NodoLivro livro = bib.busca(titulo, bib.getRaiz());
+					if(livro != bib.getNil()){
+					System.out.print(livro);
+					if(livro.getEmprestado() == false && u != null){
+						System.out.println("Deseja reservar o livro?\n1 - Sim\n2 - Não");
+						Scanner scan10 = new Scanner (System.in);
+						String dec = scan10.next();
+						if(dec == "1" && u.getEmprestados().size() < 3){
+							u.emprestimo(livro);
+						}
+						if(dec == "1" && u.getEmprestados().size() >= 3)
+							System.out.println("Limite de livros reservados atingido!");
 					}
-					System.out.print("\n");
+					}
+					else
+						System.out.println("Livro não encontrado");
 					}
 				
 			if (escolha == 4)	{ //printa todos os usuarios e livros num for ou while
-				
-				
+				System.out.println("Livros: ");
+				NodoLivro x = bib.getRaiz();
+				bib.twalk(x, bib);
 			}
-			
+				
 			if (escolha == 5){ //da baixa?
 				
 				
@@ -88,9 +100,13 @@ public class BibliotecaRural {
 			}
 			
 			if(escolha == 7){ //remove livro da arvore
-				
-				
-				
+				Scanner scan11 = new Scanner(System.in);
+				String titulo;
+				System.out.println("Digite o título do livro que deseja remover: "); 
+				titulo = scan11.nextLine();
+				NodoLivro livro = bib.busca(titulo, bib.getRaiz());
+				bib.deletar(livro);
+				System.out.println("Não há mais tal livro no acervo");
 			}
 			
 			if(escolha == 8){
@@ -102,11 +118,12 @@ public class BibliotecaRural {
 				}
 			}
 			
-			
-			
+			if(escolha != 1 && escolha != 2 && escolha != 3 && escolha != 4 && escolha != 5 && escolha != 6 && escolha != 7 && escolha != 8)
+				System.out.println("Insira um comando válido");
 			
 		}//fim while controlador
 		
 	}
+	
 
 }

@@ -2,6 +2,7 @@ package Usuarios;
 
 import java.util.ArrayList;
 
+import ArvoreBinaria.ArvoreRB;
 import ArvoreBinaria.NodoLivro;
 
 public class User {
@@ -10,9 +11,8 @@ public class User {
 	private ArrayList<NodoLivro> emprestados;
 	private boolean debito;
 	
-	public User(String nome, ArrayList<NodoLivro> emprestados, boolean debito){
+	public User(String nome, boolean debito){
 		this.nome = nome;
-		this.emprestados = null;
 		this.debito = false;
 	}
 
@@ -51,12 +51,40 @@ public class User {
 	}
 	
 	public String toString(){
+		if(this.emprestados.size() <= 0){
 		if(this.debito == false)
-		return "Nome do usuário: " +this.nome + "\nLivros emprestados: " +this.emprestados.size() 
-		+"\nEm débito: não\n"; 
+		return "Nome do usuário: " +this.nome +"\nEm débito: não\n" + "\nLivros emprestados: " +this.emprestados.size() 
+		+ "\n"; 
 		else
-		return "Nome do usuário: " +this.nome + "\nLivros emprestados: " +this.emprestados.size() 
-		+"\nEm débito: sim\n";
+		return "Nome do usuário: " +this.nome +"\nEm débito: sim\n" + "Livros emprestados: " +this.emprestados.size()
+		+ "\n";
+		}
+		if(this.emprestados.size() == 1){
+		if(this.debito == false)
+		return "Nome do usuário: " +this.nome +"\nEm débito: não\n" + "\nLivros emprestados: " +this.emprestados.size() 
+		+ "\n"+ this.emprestados.get(0); 
+		else
+		return "Nome do usuário: " +this.nome +"\nEm débito: sim\n" + "Livros emprestados: " +this.emprestados.size()
+		+ "\n"+ this.emprestados.get(0);
+		}
+		if(this.emprestados.size() == 2){
+		if(this.debito == false)
+		return "Nome do usuário: " +this.nome +"\nEm débito: não\n" + "\nLivros emprestados: " +this.emprestados.size() 
+		+ "\n"+ this.emprestados.get(0)+ this.emprestados.get(1) ; 
+		else
+		return "Nome do usuário: " +this.nome +"\nEm débito: sim\n" + "Livros emprestados: " +this.emprestados.size()
+		+ "\n" + this.emprestados.get(0) + this.emprestados.get(1);
+		}
+		else{
+		if(this.debito == false)
+		return "Nome do usuário: " +this.nome +"\nEm débito: não\n" + "\nLivros emprestados: " +this.emprestados.size() 
+		+ "\n" + this.emprestados.get(0) + this.emprestados.get(1) + this.emprestados.get(2); 
+		else
+		return "Nome do usuário: " +this.nome +"\nEm débito: sim\n" + "Livros emprestados: " +this.emprestados.size()
+		+ "\n"+ this.emprestados.get(0) + this.emprestados.get(1) + this.emprestados.get(2) ;
+		}
+		
+			
 	}
 
 }

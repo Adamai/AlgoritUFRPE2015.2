@@ -11,13 +11,11 @@ public class NodoLivro {
 	private char cor;
 	
 	
-	public NodoLivro(String titulo, char cor, boolean emprestado, NodoLivro esq, NodoLivro dir, NodoLivro pai) {
+	public NodoLivro(String titulo, char cor, boolean emprestado) {
 		this.cor = cor;
 		this.emprestado = false;
 		this.titulo = titulo;
-		this.esq = esq;
-		this.dir = dir;
-		this.pai = pai;
+
 	}
 	
 	public NodoLivro getPai() {
